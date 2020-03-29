@@ -50,9 +50,3 @@ module.exports = {
     decodeString,
     codeString
 }
-
-//
-// export {
-//     encodeString,
-//     decodeString
-// }
