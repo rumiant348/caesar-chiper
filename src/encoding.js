@@ -12,7 +12,7 @@ function decodeString(string, shiftKey) {
 
 function codeString(string, shiftKey) {
     let result = '';
-    for (let char of string) {
+    for (let char of string.toString('utf-8')) {
         result += encoder(char, shiftKey);
     }
     return result;
@@ -47,5 +47,12 @@ function shift(code, min, max) {
 
 module.exports = {
     encodeString,
-    decodeString
+    decodeString,
+    codeString
 }
+
+//
+// export {
+//     encodeString,
+//     decodeString
+// }

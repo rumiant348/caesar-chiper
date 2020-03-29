@@ -2,7 +2,7 @@
   "name": "my_caesar_cli",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
+
   "files": [
     "bin",
     "src"
