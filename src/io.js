@@ -3,17 +3,23 @@ const { Transform } = require('stream');
 const { codeString } = require('./encoding');
 
 
-function caesarTransformStream(key) {
+function caesarTransformStream(shift) {
     return new Transform({
         transform(chunk, encoding, callback) {
             try {
-                this.push(codeString(chunk, key));
+                this.push(codeString(chunk, shift));
+                this.push('\n')
                 callback();
             } catch (e) {
                 callback(e);
             }
         }
     });
+}
+
+function executeCaesarTransform(readableStream, writeableStream, shift) {
+    const transformStream = caesarTransformStream(shift);
+    executePipeline(readableStream, transformStream, writeableStream);
 }
 
 function executePipeline(readableStream, transformStream, writeableStream) {
@@ -38,9 +44,7 @@ function logError(err) {
     process.exit(1);
 }
 
-testRead();
-
 module.exports = {
-    executePipeline
+    executeCaesarTransform
 };
 
